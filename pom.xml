@@ -29,14 +29,18 @@
         <!--Spring boot-->
 
         <!--Security-->
-        <!--Security-->
-
-        <!--Mustache-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mustache</artifactId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--Mustache-->
+        <!--Security-->
+
+        <!--Freemaker-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--Freemaker-->
 
         <!--Lombok-->
         <dependency>
@@ -54,6 +58,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
+            <version>42.2.27</version>
             <scope>runtime</scope>
         </dependency>
         <!--Database support-->
