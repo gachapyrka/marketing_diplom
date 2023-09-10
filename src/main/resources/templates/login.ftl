@@ -4,8 +4,18 @@
 
 <@c.page>
     <@k.page_default>
-        <h4>Авторизация</h4>
-        <@l.login "/login" />
-        <a href="/registration">Регистрация</a>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <h4>Авторизация</h4>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5%">
+            <@l.login "/login" />
+        </div>
+        <div class="row">
+            <div class="col s2 offset-s5">
+                <p><a href="/registration">Регистрация</a></p>
+            </div>
+        </div>
     </@k.page_default>
 </@c.page>

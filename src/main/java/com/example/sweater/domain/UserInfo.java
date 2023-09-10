@@ -14,6 +14,7 @@ import java.util.Collections;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Table(name = "user_info")
 public class UserInfo implements UserDetails {
     @Id
@@ -26,6 +27,10 @@ public class UserInfo implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "profile_id")
+    private Profile profile;
 
     private boolean active = true;
 
@@ -53,4 +58,7 @@ public class UserInfo implements UserDetails {
     public boolean isEnabled() {
         return active;
     }
+
+    public boolean isAdmin() {return role == Role.ADMIN;}
+    public boolean isMarketer() {return role == Role.MARKETER;}
 }

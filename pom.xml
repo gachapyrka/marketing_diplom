@@ -58,10 +58,17 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.27</version>
             <scope>runtime</scope>
         </dependency>
         <!--Database support-->
+
+        <!--Mail-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
+        <!--Mail-->
 
         <!--Hot reload-->
         <dependency>
