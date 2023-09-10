@@ -8,7 +8,6 @@
             <thead>
             <th>Логин</th>
             <th>ФИО</th>
-            <th>Отдел</th>
             <th>Статус</th>
             </thead>
             <tbody>
@@ -16,7 +15,6 @@
                 <tr>
                     <td>${usr.username}</td>
                     <td>${usr.getProfile().credentials}</td>
-                    <td>${usr.getProfile().department}</td>
                     <td>
                         <form method="post" action="/users/${usr.id}">
                             <#if usr.active>

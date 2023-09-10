@@ -8,14 +8,17 @@
             <a href="/" style="margin-left: 10px" class="brand-logo">Образование и развитие</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <#if known>
-                    <li><a href="/raises">Рейсы</a></li>
-                    <li><a href="/tours">Путевки</a></li>
                     <#if isAdmin>
                         <li><a href="/users">Пользователи</a></li>
-                        <li><a href="/statistics">Статистика</a></li>
+                        <li><a href="/marketers">Маркетологи</a></li>
                     <#else>
-                        <li><a href="/tickets">Корзина</a></li>
-                        <li><a href="/history">История покупок</a></li>
+                        <#if isMarketer>
+                            <li><a href="/info">Данные</a></li>
+                            <li><a href="/orders">Запросы</a></li>
+                        <#else>
+                            <li><a href="/my-orders">Запросы</a></li>
+                            <li><a href="/profile">Профиль</a></li>
+                        </#if>
                     </#if>
                     <li><@l.logout></@l.logout></li>
                 <#else>
