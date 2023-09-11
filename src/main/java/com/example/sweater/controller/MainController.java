@@ -63,7 +63,7 @@ public class MainController {
             profile.getUserInfo().setRole(Role.USER);
 
         String key = registrationService.getKey(profile);
-        String text = "Ваш код-подтверждение: " + key;
+        String text = "Ваш код-подтверждение: " + key + "\n\n\nНе сообщайте код никому!";
 
         mailService.send("Код подтверждения", text, profile.getUserInfo().getUsername(), null);
 
