@@ -31,5 +31,14 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <#if isOK>
+                    Недостаточно данных для анализа... Пожалуйста, введите дополнительную статистику по месяцам в текущем диапазоне.
+                <#else>
+
+                </#if>
+            </div>
+        </div>
     </@k.page_default>
 </@c.page>

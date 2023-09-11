@@ -19,7 +19,7 @@
                     <td>${order.getProfile().getUserInfo().getUsername()}</td>
                     <td>${order.getText()}</td>
                     <td>
-                        <form method="post" action="/order-delete/${order.id}">
+                        <form method="get" action="/report/${order.id}">
                             <input type="hidden" name="_csrf" value="${_csrf.token}" />
                             <input type="submit" value="Ответить">
                         </form>

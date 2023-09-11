@@ -107,4 +107,8 @@ public class MainController {
 
         return "main";
     }
+    @GetMapping("/logout")
+    public String logout(Model model){
+        return "logout";
+    }
 }

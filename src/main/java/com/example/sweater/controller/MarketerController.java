@@ -5,6 +5,7 @@ import com.example.sweater.domain.Statistics;
 import com.example.sweater.repo.OrderRepo;
 import com.example.sweater.repo.StatisticsRepo;
 import com.example.sweater.service.MailService;
+import com.example.sweater.service.MetricsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @PreAuthorize("hasAuthority('MARKETER')")
@@ -25,6 +28,9 @@ public class MarketerController {
     private OrderRepo orderRepo;
     @Autowired
     private StatisticsRepo statisticsRepo;
+
+    @Autowired
+    private MetricsService metricsService;
 
     @GetMapping("/info")
     public String getInfo(Model model){
@@ -84,13 +90,28 @@ public class MarketerController {
         return "orders";
     }
 
-    @GetMapping("/orders/{order}")
+    @GetMapping("/report/{order}")
     public String getOrder(@PathVariable Order order, Model model){
-        return "users";
+        model.addAttribute("order", order);
+        return "report";
     }
 
-    @PostMapping("/orders/{order}")
-    public String getOrder(@PathVariable Order order, @RequestParam String text, Model model){
-        return "users";
+    @PostMapping("/report/{order}")
+    public String getOrder(@PathVariable Order order,
+                           @RequestParam String from, @RequestParam String to, @RequestParam String type,
+                           Model model){
+        Map<Date, Double> mp = metricsService.getMetric(from, to, type);
+
+        model.addAttribute("order", order);
+        model.addAttribute("from", from);
+        model.addAttribute("to", to);
+
+        if(mp.size() != 0){
+            model.addAttribute("result", mp);
+            model.addAttribute("type", type);
+            model.addAttribute("isOK", true);
+        }
+
+        return "analyze";
     }
 }

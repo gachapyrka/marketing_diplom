@@ -117,20 +117,20 @@ public class UserController {
     }
 
     @PostMapping("/delete-profile")
-    public String deleteProfile(@AuthenticationPrincipal UserInfo user, Model model){
+    public String deleteProfile(@AuthenticationPrincipal UserInfo user, Model model) {
         Profile profile = null;
 
         Iterable<Profile> profiles = profileRepo.findAll();
-        for(Profile p : profiles){
-            if(p.getUserInfo().getId() == user.getId()){
+        for (Profile p : profiles) {
+            if (p.getUserInfo().getId() == user.getId()) {
                 profile = p;
                 break;
             }
         }
 
         Iterable<Order> orders = orderRepo.findAll();
-        for(Order o: orders){
-            if(o.getProfile().getId() == profile.getId())
+        for (Order o : orders) {
+            if (o.getProfile().getId() == profile.getId())
                 orderRepo.delete(o);
         }
 
@@ -138,10 +138,5 @@ public class UserController {
         userInfoRepo.delete(profile.getUserInfo());
 
         return "redirect:/logout";
-    }
-
-    @GetMapping("/logout")
-    public String logout(Model model){
-        return "logout";
     }
 }
