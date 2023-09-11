@@ -18,9 +18,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
-    @JoinColumn(name = "profileId")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "profileId" , nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Profile profile;
 
     private String text;

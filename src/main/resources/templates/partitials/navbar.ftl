@@ -16,7 +16,7 @@
                             <li><a href="/info">Данные</a></li>
                             <li><a href="/orders">Запросы</a></li>
                         <#else>
-                            <li><a href="/my-orders">Запросы</a></li>
+                            <li><a href="/orders-view">Запросы</a></li>
                             <li><a href="/profile">Профиль</a></li>
                         </#if>
                     </#if>

@@ -6,6 +6,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,4 +29,8 @@ public class Profile {
     @JoinColumn(name = "userInfoId")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserInfo userInfo;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Order> orders;
 }
