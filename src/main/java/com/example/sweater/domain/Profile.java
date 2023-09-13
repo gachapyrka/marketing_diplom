@@ -30,7 +30,6 @@ public class Profile {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserInfo userInfo;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "profile")
     private List<Order> orders;
 }

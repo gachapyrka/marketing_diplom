@@ -1,8 +1,5 @@
 <#macro page_default>
-    <div style="background-image: url('../../img/main.jpg');
-            height: calc(100vh - 64px);
-            background-size: cover;
-            position: relative;">
+    <div class="def-container">
         <div class="container">
             <#nested>
         </div>

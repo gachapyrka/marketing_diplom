@@ -2,7 +2,7 @@
 <#import "login.ftl" as l>
 
 <#macro navbar>
-    <nav class="blue lighten-4">
+    <nav class="teal">
         <div class="nav-wrapper">
             <a style="visibility:collapse" id="errorMessage"></a>
             <a href="/" style="margin-left: 10px" class="brand-logo">Образование и развитие</a>
@@ -20,7 +20,8 @@
                             <li><a href="/profile">Профиль</a></li>
                         </#if>
                     </#if>
-                    <li><@l.logout></@l.logout></li>
+                    <li><a href="/logout">Выход</a></li>
+<#--                    <li><@l.logout></@l.logout></li>-->
                 <#else>
                     <li><a href="/login">Вход</a></li>
                     <li><a href="/registration">Регистрация</a></li>

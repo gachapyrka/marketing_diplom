@@ -11,16 +11,18 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "orders")
-public class Order {
+@Table(name = "reports")
+public class Report {
+
     @Id
     @Setter(AccessLevel.PROTECTED)
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name="profiles_id", nullable=false)
-    private Profile profile;
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "orderId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Order order;
 
     private String text;
 }

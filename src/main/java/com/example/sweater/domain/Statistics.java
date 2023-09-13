@@ -37,26 +37,26 @@ public class Statistics {
     private double totalIncome; //кол-во дохода с рекламы;
 
     public String getDateStr(){
-        String d = "";
-
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
+
+        String d = String.valueOf(cal.get(Calendar.YEAR));
+        d+="-";
         switch (cal.get(Calendar.MONTH)){
-            case 1: d+="Январь ";break;
-            case 2: d+="Февраль ";break;
-            case 3: d+="Март ";break;
-            case 4: d+="Апрель ";break;
-            case 5: d+="Май ";break;
-            case 6: d+="Июнь ";break;
-            case 7: d+="Июль ";break;
-            case 8: d+="Август ";break;
-            case 9: d+="Сентябрь ";break;
-            case 10: d+="Октябрь ";break;
-            case 11: d+="Ноябрь ";break;
-            case 12: d+="Декабрь ";break;
+            case 0: d+="01";break;
+            case 1: d+="02";break;
+            case 2: d+="03";break;
+            case 3: d+="04";break;
+            case 4: d+="05";break;
+            case 5: d+="06";break;
+            case 6: d+="07";break;
+            case 7: d+="08";break;
+            case 8: d+="09";break;
+            case 9: d+="10";break;
+            case 10: d+="11";break;
+            case 11: d+="12";break;
         }
 
-        d += String.valueOf(cal.get(Calendar.YEAR));
         return d;
     }
 
