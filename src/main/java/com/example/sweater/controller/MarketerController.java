@@ -1,13 +1,18 @@
 package com.example.sweater.controller;
 
 import com.example.sweater.domain.Order;
+import com.example.sweater.domain.Profile;
 import com.example.sweater.domain.Statistics;
+import com.example.sweater.domain.UserInfo;
 import com.example.sweater.repo.OrderRepo;
+import com.example.sweater.repo.ProfileRepo;
 import com.example.sweater.repo.StatisticsRepo;
 import com.example.sweater.service.MailService;
 import com.example.sweater.service.MetricsService;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +31,9 @@ public class MarketerController {
     private MailService mailService;
     @Autowired
     private OrderRepo orderRepo;
+
+    @Autowired
+    private ProfileRepo profileRepo;
     @Autowired
     private StatisticsRepo statisticsRepo;
 
@@ -100,18 +108,47 @@ public class MarketerController {
     public String getOrder(@PathVariable Order order,
                            @RequestParam String from, @RequestParam String to, @RequestParam String type,
                            Model model){
-        Map<Date, Double> mp = metricsService.getMetric(from, to, type);
+        List<Pair<String, Double>> mp = metricsService.getMetric(from, to, type);
 
         model.addAttribute("order", order);
         model.addAttribute("from", from);
         model.addAttribute("to", to);
+        model.addAttribute("type", metricsService.getTypeFormat(type));
+        model.addAttribute("ttype", type);
 
-        if(mp.size() != 0){
-            model.addAttribute("result", mp);
-            model.addAttribute("type", type);
-            model.addAttribute("isOK", true);
-        }
+        model.addAttribute("isOK", mp.size() <= 1);
+
+        model.addAttribute("result", mp);
+        model.addAttribute("ticks", metricsService.getTicks(type));
+        model.addAttribute("maxTick", metricsService.getMaxTick(type));
 
         return "analyze";
+    }
+
+    @PostMapping("/mail/{order}")
+    public String postMail(@PathVariable Order order,
+                           @RequestParam String text, @AuthenticationPrincipal UserInfo user,
+                           Model model){
+
+        Profile profile = null;
+
+        Iterable<Profile> profiles = profileRepo.findAll();
+        for(Profile p : profiles){
+            if(p.getUserInfo().getId() == user.getId()){
+                profile = p;
+                break;
+            }
+        }
+
+        String subj = "Отчет по запросу";
+        String t = "Добрый день! Предоставляем Вам отчет по запросу '" + order.getText() + "'\n\n\n";
+        t+="Ответ: " + text +"\n\n\n";
+        t+="С уважением "+ profile.getCredentials() +", отдел маркетинга.";
+
+        mailService.send(subj, t, order.getProfile().getUserInfo().getUsername(), null);
+
+        orderRepo.delete(order);
+
+        return "redirect:/orders";
     }
 }

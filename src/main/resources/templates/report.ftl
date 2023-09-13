@@ -4,12 +4,22 @@
 
 <@c.page>
     <@k.page_default>
-        <h4>${order.text}</h4>
-        <div class="row">
+        <div class="row" style="margin-top: 3%">
             <div class="col s6 offset-s3">
-                <form method="post" id="analyze" action="/report/${order.id}">
+                <h4>${order.text}</h4>
+            </div>
+        </div>
+        <form method="post" id="analyze" action="/report/${order.id}">
+            <div class="row">
+                <div class="col s2 offset-s3">
                     <div><label> От: <input type="month" placeholder="С" min = "2000-01" max = "2023-09" required="true" name="from"/> </label></div>
-                    <div><label> ДО: <input type="month" placeholder="По" min = "2000-01" max = "2023-09" required="true" name="to"/> </label></div>
+                </div>
+                <div class="col s2 offset-s2">
+                    <div><label> До: <input type="month" placeholder="По" min = "2000-01" max = "2023-09" required="true" name="to"/> </label></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6 offset-s3">
                     <div>
                         <select class="browser-default" required="true" form="analyze" name="type" id="type">
                             <option disabled selected>Выберите метрику</option>
@@ -26,10 +36,14 @@
                             <option value="DRR">DRR</option>
                         </select>
                     </div>
-                    <div><input type="submit" value="Сгенерировать"></div>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                </form>
+                </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col s6 offset-s3">
+                    <div><input type="submit" class="aves-effect waves-light btn" value="Сгенерировать"></div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                </div>
+            </div>
+        </form>
     </@k.page_default>
 </@c.page>

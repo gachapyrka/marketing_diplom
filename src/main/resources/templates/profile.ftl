@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="input-field col s6 offset-s3">
                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                    <div><input type="submit" class="aves-effect waves-light btn blue lighten-5" value="Удалить аккаунт"/></div>
+                    <div><input type="submit" class="aves-effect waves-light btn red lighten-2" value="Удалить аккаунт"/></div>
                 </div>
             </div>
         </form>

@@ -71,7 +71,7 @@ public class AdminController {
         return "redirect:/users";
     }
 
-    @PostMapping("/marketers/{marketer}")
+    @PostMapping("/marketers/{user}")
     public String editMarketer(@PathVariable UserInfo user, Model model){
         user.setActive(!user.isActive());
         userRepo.save(user);

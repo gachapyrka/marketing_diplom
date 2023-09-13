@@ -11,7 +11,7 @@
         </div>
         <div class="row" style="margin-top: 2%">
             <div class="col s8 offset-s2">
-                <table>
+                <table class="highlight">
                     <thead>
                     <th>Текст</th>
                     <th></th>
@@ -23,7 +23,7 @@
                             <td>
                                 <form method="post" action="/order-delete/${order.id}">
                                     <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                                    <input type="submit" value="Удалить">
+                                    <input type="submit" class="aves-effect waves-light btn red lighten-2" value="Удалить">
                                 </form>
                             </td>
                         </tr>
@@ -36,7 +36,7 @@
                             </td>
                             <td>
                                 <input type="hidden" name="_csrf" value="${_csrf.token}" />
-                                <input type="submit" value="Добавить">
+                                <input type="submit" class="aves-effect waves-light btn" value="Добавить">
                             </td>
                         </form>
                     </tr>

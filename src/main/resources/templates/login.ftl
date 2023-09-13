@@ -23,9 +23,6 @@
                 </div>
                 <div class="col s1">
                     <button class="aves-effect waves-light btn" onclick="window.location.href = 'localhost:8080/registration'">Регистрация</button>
-                    <form action="/registration">
-
-                    </form>
                 </div>
             </div>
         </form>
